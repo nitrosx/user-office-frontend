@@ -1,3 +1,18 @@
+:root {
+  --palette-primary-dark: #b33739;
+  --palette-primary-main: #FF4E50;
+  --palette-primary-light: #FC913A;
+  --palette-primary-contrast: #FFFFFF;
+  --palette-secondary-dark: #c7aa1c;
+  --palette-secondary-main: #F9D423;
+  --palette-secondary-light: #E1F5C4;
+  --palette-secondary-contrast: #000000;
+  --palette-error: #a91b2e;
+  --palette-warning: #fbbe10;
+  --palette-success: #3e863e;
+  --palette-info: #1e5df8;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -47,3 +62,152 @@ div.MuiToolbar-root[class*='MTableToolbar-highlight'] {
 }
 
 /*------ Mobile view improvements ------*/
+
+/*------ STFC modifications ------------*/
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--palette-primary-dark);
+}
+
+/* Drawer icons */
+.MuiDrawer-root .MuiListItemIcon-root {
+  color: var(--palette-primary-main);
+}
+
+/* Drawer close icon */
+.MuiDrawer-root .MuiIconButton-root {
+  color: var(--palette-primary-main);
+}
+
+/* Table row buttons */
+.MuiTable-root .MuiTableRow-root .MuiIconButton-root:not(.Mui-disabled) {
+  color: var(--palette-primary-main);
+}
+
+/* Table search icon */
+.MuiGrid-root .MuiToolbar-root .MuiInputAdornment-positionStart:not(.Mui-disabled) {
+  color: var(--palette-primary-main);
+}
+
+/* Table show columns icon */
+.MuiGrid-root .MuiToolbar-root .MuiIconButton-root:not(.Mui-disabled) {
+  color: var(--palette-primary-dark);
+}
+
+/* Table drop-down icons */
+.MuiGrid-root .MuiFormControl-root .MuiInput-root > svg {
+  fill: var(--palette-primary-main);
+}
+
+/* Table search clear button, date pickers */
+.MuiFormControl-root .MuiInputAdornment-positionEnd button:not(.Mui-disabled) {
+  color: var(--palette-primary-main);
+}
+
+/* Table pagination icons */
+.MuiTablePagination-input > svg {
+  fill: var(--palette-primary-main);
+}
+
+/* Drop-down icons */
+.MuiSvgIcon-root.MuiSelect-icon {
+  fill: var(--palette-primary-main);
+}
+
+/* 'Box' search icon */
+.MuiBox-root .MuiToolbar-root .MuiInputAdornment-positionStart:not(.Mui-disabled) {
+  color: var(--palette-primary-main);
+}
+
+/* 'Box' buttons */
+.MuiBox-root .MuiIconButton-root:not(.Mui-disabled) {
+  color: var(--palette-primary-main);
+}
+
+/* Role icons */
+.MuiList-root .MuiMenuItem-root:not(.Mui-disabled) svg {
+  fill: var(--palette-primary-main);
+}
+
+/* Logo image - ensures min 1/4 of the height is padding */
+.header-logo {
+  max-height: 71.4%;
+}
+
+.header-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 24px;
+}
+
+.MuiButton-contained {
+  color: var(--palette-primary-contrast);
+  background-color: var(--palette-primary-main);
+}
+
+.MuiButton-contained:hover {
+  color: var(--palette-primary-contrast);
+  background-color: var(--palette-primary-light);
+}
+
+.MuiButton-containedPrimary {
+  color: var(--palette-secondary-contrast);
+  background-color: var(--palette-secondary-main);
+}
+
+.MuiButton-containedPrimary:hover {
+  color: var(--palette-primary-contrast);
+  background-color: var(--palette-secondary-dark);
+}
+
+.MuiButton-containedSecondary {
+  color: var(--palette-primary-contrast);
+  background-color: var(--palette-primary-main);
+}
+
+.MuiButton-containedSecondary:hover {
+  color: var(--palette-primary-contrast);
+  background-color: var(--palette-primary-light);
+}
+
+.MuiSnackbar-root [class*="SnackbarItem-variantSuccess"] {
+  background-color: var(--palette-success);
+  color: var(--palette-primary-contrast);
+}
+
+.MuiSnackbar-root [class*="SnackbarItem-variantError"] {
+  background-color: var(--palette-error);
+  color: var(--palette-primary-contrast);
+}
+
+.MuiSnackbar-root [class*="SnackbarItem-variantWarning"] {
+  background-color: var(--palette-warning);
+  color: var(--palette-primary-contrast);
+}
+
+.MuiSnackbar-root [class*="SnackbarItem-variantInformation"] {
+  background-color: var(--palette-info);
+  color: var(--palette-secondary-contrast);
+}
+
+.MuiCircularProgress-root {
+  color: var(--palette-primary-main);
+}
+
+.MuiTabs-indicator {
+  color: var(--palette-secondary-main);
+}
+
+@media(min-width: 600px) {
+  .MuiToolbar-root {
+    height: 72px;
+    min-height: 72px;
+  }
+
+  .toolbarIcon {
+    min-height: 72px;
+  }
+}
+
+/*------ STFC modifications ------------*/

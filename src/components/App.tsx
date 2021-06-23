@@ -1,6 +1,6 @@
+import { StylesProvider } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Close from '@material-ui/icons/Close';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import { ProviderContext, SnackbarProvider } from 'notistack';
 import React, { ErrorInfo, useContext } from 'react';
 import { CookiesProvider } from 'react-cookie';
@@ -25,6 +25,7 @@ import { getUnauthorizedApi } from 'hooks/common/useDataApi';
 
 import { getTheme } from '../theme';
 import DashBoard from './DashBoard';
+import Theme from './theme/Theme';
 import EmailVerification from './user/EmailVerification';
 import ExternalAuth from './user/ExternalAuth';
 import ResetPassword from './user/ResetPassword';
@@ -140,36 +141,38 @@ class App extends React.Component {
     }
 
     return (
-      <ThemeProvider theme={getTheme()}>
-        <CookiesProvider>
-          <UserContextProvider>
-            <SnackbarProvider
-              ref={this.notistackRef}
-              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-              maxSnack={1}
-              action={(key) => (
-                <IconButton onClick={this.onClickDismiss(key)}>
-                  <Close htmlColor="white" />
-                </IconButton>
-              )}
-            >
-              <SettingsContextProvider>
-                <FeatureContextProvider>
-                  <DownloadContextProvider>
-                    <ReviewAndAssignmentContextProvider>
-                      <Router>
-                        <QueryParamProvider ReactRouterRoute={Route}>
-                          <div className="App">{routes}</div>
-                        </QueryParamProvider>
-                      </Router>
-                    </ReviewAndAssignmentContextProvider>
-                  </DownloadContextProvider>
-                </FeatureContextProvider>
-              </SettingsContextProvider>
-            </SnackbarProvider>
-          </UserContextProvider>
-        </CookiesProvider>
-      </ThemeProvider>
+      <CookiesProvider>
+        <UserContextProvider>
+          <SnackbarProvider
+            ref={this.notistackRef}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            maxSnack={1}
+            action={(key) => (
+              <IconButton onClick={this.onClickDismiss(key)}>
+                <Close htmlColor="white" />
+              </IconButton>
+            )}
+          >
+            <SettingsContextProvider>
+              <FeatureContextProvider>
+                <StylesProvider injectFirst>
+                  <Theme>
+                    <DownloadContextProvider>
+                      <ReviewAndAssignmentContextProvider>
+                        <Router>
+                          <QueryParamProvider ReactRouterRoute={Route}>
+                            <div className="App">{routes}</div>
+                          </QueryParamProvider>
+                        </Router>
+                      </ReviewAndAssignmentContextProvider>
+                    </DownloadContextProvider>
+                  </Theme>
+                </StylesProvider>
+              </FeatureContextProvider>
+            </SettingsContextProvider>
+          </SnackbarProvider>
+        </UserContextProvider>
+      </CookiesProvider>
     );
   }
 }

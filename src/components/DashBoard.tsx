@@ -208,7 +208,7 @@ const Dashboard: React.FC = () => {
         open={open}
         onClose={handleDrawerClose}
       >
-        <div className={classes.toolbarIcon}>
+        <div className={`${classes.toolbarIcon} toolbarIcon`}>
           {isTabletOrMobile && (
             <Typography component="h1" variant="h6" color="inherit" noWrap>
               User Office
