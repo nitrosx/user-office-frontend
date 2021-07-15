@@ -2,10 +2,8 @@ import {
   createMuiTheme,
   responsiveFontSizes,
   useTheme,
-  StylesProvider,
 } from '@material-ui/core';
 import createPalette from '@material-ui/core/styles/createPalette';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import React, { useContext } from 'react';
 import { useEffect } from 'react';
 
@@ -61,7 +59,7 @@ const Theme: React.FC = (props) => {
     },
   });
 
-  const theme = responsiveFontSizes(
+  responsiveFontSizes(
     createMuiTheme({
       palette: palette,
     })
@@ -79,11 +77,7 @@ const Theme: React.FC = (props) => {
     });
   }, [settings]);
 
-  return (
-    <StylesProvider injectFirst>
-      <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
-    </StylesProvider>
-  );
+  return <>{props.children}</>;
 };
 
 export default Theme;
