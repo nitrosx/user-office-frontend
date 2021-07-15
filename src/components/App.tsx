@@ -2,6 +2,7 @@ import {
   ThemeProvider,
   createMuiTheme,
   StylesProvider,
+  Theme,
 } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Close from '@material-ui/icons/Close';
@@ -28,7 +29,7 @@ import { FeatureId, SettingsId } from 'generated/sdk';
 import { getUnauthorizedApi } from 'hooks/common/useDataApi';
 
 import DashBoard from './DashBoard';
-import Theme from './theme/theme';
+import CustomTheme from './theme/theme';
 import EmailVerification from './user/EmailVerification';
 import ExternalAuth from './user/ExternalAuth';
 import ResetPassword from './user/ResetPassword';
@@ -115,7 +116,13 @@ const Routes: React.FC<RouteProps> = () => {
   }
 };
 
-class App extends React.Component {
+class App extends React.Component<Record<string, never>, { theme: Theme }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { theme: createMuiTheme() };
+    this.handleThemeUpdate = this.handleThemeUpdate.bind(this);
+  }
+
   static getDerivedStateFromError(): void {
     // Update state so the next render will show the fallback UI.
     localStorage.removeItem('token');
@@ -144,11 +151,15 @@ class App extends React.Component {
     this.notistackRef.current?.closeSnackbar(key);
   };
 
+  handleThemeUpdate(updatedTheme: Theme) {
+    this.setState({ theme: updatedTheme });
+  }
+
   render(): JSX.Element {
     return (
       <CookiesProvider>
         <StylesProvider injectFirst>
-          <ThemeProvider theme={createMuiTheme()}>
+          <ThemeProvider theme={this.state.theme}>
             <UserContextProvider>
               <SnackbarProvider
                 ref={this.notistackRef}
@@ -162,7 +173,12 @@ class App extends React.Component {
               >
                 <SettingsContextProvider>
                   <FeatureContextProvider>
-                    <Theme>
+                    <CustomTheme
+                      theme={this.state.theme}
+                      handleThemeUpdate={(updatedTheme) =>
+                        this.handleThemeUpdate(updatedTheme)
+                      }
+                    >
                       <DownloadContextProvider>
                         <ReviewAndAssignmentContextProvider>
                           <Router>
@@ -172,7 +188,7 @@ class App extends React.Component {
                           </Router>
                         </ReviewAndAssignmentContextProvider>
                       </DownloadContextProvider>
-                    </Theme>
+                    </CustomTheme>
                   </FeatureContextProvider>
                 </SettingsContextProvider>
               </SnackbarProvider>
